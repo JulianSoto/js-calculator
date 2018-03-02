@@ -73,18 +73,20 @@ function delLog(){
 }
 
 function writeLog(n){
-  if (replaceLog){
-    if (n === '.') {
-      logPad.innerHTML = '0.';
+  if (logPad.innerHTML.length < 16){
+    if (replaceLog){
+      if (n === '.') {
+        logPad.innerHTML = '0.';
+      } else {
+        logPad.innerHTML = n;
+      }
+      replaceLog = false;
     } else {
-      logPad.innerHTML = n;
-    }
-    replaceLog = false;
-  } else {
-    if (n === '.' && logPad.innerHTML.indexOf('.') !== -1){
-      void(0);
-    } else {
-      logPad.innerHTML += n;
+      if ((n === '.' && logPad.innerHTML.indexOf('.') !== -1) || (n === '0' && logPad.innerHTML === '0')){
+        void(0);
+      } else {
+        logPad.innerHTML += n;
+      }
     }
   }
 }
